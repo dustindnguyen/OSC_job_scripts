@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --account=PAS1751                      
+#SBATCH --job-name=donut_cc85_a 
+#SBATCH --time=35:30:00                          
+#SBATCH --nodes=3
+#SBATCH --gpus-per-node=2
+#SBATCH --constraint=48core
+#SBATCH --output=%j.log
+pwd; hostname; date
+
+module load openmpi-cuda/4.1.1-hpcx
+module load cuda/11.0.3
+module load hdf5/1.12.0
+
+cd ~ 
+cd /fs/ess/PAS1751/dustin/donut_paper1/donut_cc85_a/cholla
+
+srun -n 6 --gpu_cmode=shared ./cholla /fs/ess/PAS1751/dustin/donut_paper1/donut_cc85_a/cc85.txt
+
+date 
+  

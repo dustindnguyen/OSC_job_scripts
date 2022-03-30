@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --account=PAS1751                      
+#SBATCH --job-name=concat_donut_cc85_a 
+#SBATCH --time=07:00:00                          
+#SBATCH --nodes=1 
+#SBATCH --mem=128gb 
+#SBATCH --output=%j.log
+pwd; hostname; date
+
+module load python/3.6-conda5.2
+
+cd ~ 
+cd /fs/ess/PAS1751/dustin/donut_paper1/donut_cc85_a
+
+python multi_gpu_cat.py 
+
+date 
+  
